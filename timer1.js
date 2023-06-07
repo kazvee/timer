@@ -4,11 +4,10 @@ const userAlarms = process.argv.slice(2);
 const scheduleAlarms = (alarms) => {
   for (const alarm of alarms) {
 
-    // Disregard any numbers that are negative, cannot schedule alarms in the past
-    // This also forces type coersion on any non-number user inputs, turning it into NaN
-    if (alarm >= 0) {
+    // Disregard any non-numbers and numbers that are negative, cannot schedule alarms in the past
+    if (!isNaN(alarm) && alarm >= 0) {
       setTimeout(() => {
-
+        
         // console.log(`This is the ${alarm} second alarm! ⏰`);
         makeSound();
 
